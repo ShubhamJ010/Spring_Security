@@ -10,6 +10,7 @@ import com.example.spring_security.Repository.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -36,17 +37,23 @@ public class AuthService {
     }
 
     public AuthResponse authenticate(AuthRequest request) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getPassword()
-                )
 
-        );
-        var user=userRepo.findByEmail(request.getEmail())
-                .orElseThrow(()-> new UsernameNotFoundException("fuck this"));
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            request.getEmail(),
+                            request.getPassword()
+                    )
 
-        var jwtoken= jwtService.generateToken(user);
-        return AuthResponse.builder().token(jwtoken).build();
+            );
+            var user=userRepo.findByEmail(request.getEmail())
+                    .orElseThrow(()-> new UsernameNotFoundException("fuck this"));
+
+            var jwtoken= jwtService.generateToken(user);
+            return AuthResponse.builder().token(jwtoken).build();
+        } catch (AuthenticationException e) {
+            System.out.println("fuck thiss");
+            throw new RuntimeException(e);
+        }
     }
 }

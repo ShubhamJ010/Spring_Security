@@ -21,7 +21,7 @@ public class UserConfig {
     public UserDetailsService userDetailsService()
     {
         return username -> userRepo.findByEmail(username)
-                .orElseThrow(()->new UsernameNotFoundException("fuckthis"));
+                .orElseThrow(()->new UsernameNotFoundException("NO USER NAME FOUND"));
     }
 
     @Bean
