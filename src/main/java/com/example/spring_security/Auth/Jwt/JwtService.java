@@ -1,6 +1,7 @@
 package com.example.spring_security.Config;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
@@ -20,6 +21,10 @@ public class JwtService {
 
     @Value("${security.SECRET_KEY}")
     private String SECRET_KEY;
+    private final JwtParser jwtParser;
+    public JwtService(){
+        this.jwtParser = Jwts.parser().setSigningKey(SECRET_KEY);
+    }
 
     // Extract UserName
     public String extractUsername(String token) {

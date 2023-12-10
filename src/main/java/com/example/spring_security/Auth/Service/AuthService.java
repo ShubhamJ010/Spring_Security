@@ -1,6 +1,6 @@
 package com.example.spring_security.Auth;
 
-import com.example.spring_security.Config.JwtService;
+import com.example.spring_security.Auth.Jwt.JwtService;
 import com.example.spring_security.Model.Request.AuthRequest;
 import com.example.spring_security.Model.Request.RegisterRequest;
 import com.example.spring_security.Model.Response.AuthResponse;
