@@ -1,4 +1,4 @@
-package com.example.spring_security.Model.Response;
+package com.example.spring_security.Auth.Model.Response;
 
 public class ErrorRes {
 }

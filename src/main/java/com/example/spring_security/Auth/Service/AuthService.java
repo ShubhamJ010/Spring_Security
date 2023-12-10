@@ -1,9 +1,9 @@
-package com.example.spring_security.Auth;
+package com.example.spring_security.Auth.Service;
 
 import com.example.spring_security.Auth.Jwt.JwtService;
-import com.example.spring_security.Model.Request.AuthRequest;
-import com.example.spring_security.Model.Request.RegisterRequest;
-import com.example.spring_security.Model.Response.AuthResponse;
+import com.example.spring_security.Auth.Model.Request.AuthRequest;
+import com.example.spring_security.Auth.Model.Request.RegisterRequest;
+import com.example.spring_security.Auth.Model.Response.AuthResponse;
 import com.example.spring_security.Model.Role;
 import com.example.spring_security.Model.User;
 import com.example.spring_security.Repository.UserRepo;
